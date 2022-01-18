@@ -8,6 +8,7 @@ import {authRoutes} from "./Routes/Auth";
 import {json} from 'body-parser';
 import {chatRoutes} from "./Routes/Chat";
 import {ChatSocket} from "./Sockets/ChatSocket";
+import {usersRoutes} from "./Routes/Users";
 
 const jsonParser = json();
 
@@ -25,11 +26,12 @@ app.use(cors());
 app.use(router);
 app.use(authRoutes);
 app.use(chatRoutes);
+app.use(usersRoutes);
 
 
 const port = 5000;
 const server = http.createServer(app);
 
-new ChatSocket(server);
+const chatSocket = new ChatSocket(server);
 
 server.listen(port);

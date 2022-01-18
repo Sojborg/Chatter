@@ -1,11 +1,11 @@
-﻿import {addUser, getUser, getUsersInRoom, removeUser} from "../users";
+import {addUser, getUser, getUsersInRoom, removeUser} from "../users";
 import {Chat} from "../Models/Chat";
 import {ObjectId} from "mongodb";
 import {Server as HttpServer} from 'http';
 import {Server as IoServer} from 'socket.io';
 
 export class ChatSocket {
-    
+
     constructor(httpServer: HttpServer) {
         const io = new IoServer(httpServer, {
             cors: {
@@ -60,4 +60,4 @@ export class ChatSocket {
             })
         })
     }
-} 
+}
