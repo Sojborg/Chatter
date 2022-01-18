@@ -1,0 +1,25 @@
+﻿### Health check
+GET http://localhost:5000/
+Accept: application/json
+
+### register user
+POST http://localhost:5000/register
+Content-Type: application/json
+
+{
+  "username": "preben",
+  "email": "preben@mail.com",
+  "password": "hemmeligt"
+}
+
+### chat message
+POST http://localhost:5000/message
+Content-Type: application/json
+
+{
+  "message": "hej med dig"
+}
+
+### Get channel chats
+GET http://localhost:5000/channel/61e68a6a6642d355e0004a91
+Content-Type: application/json
