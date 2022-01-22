@@ -1,9 +1,9 @@
 import express from 'express';
-const router = express.Router();
-import {AES, enc} from 'crypto-js';
-import {User} from "../Models/User";
 import {Chat} from "../Models/Chat";
 import {ObjectId} from 'mongodb';
+import {verifyMiddleware} from "../Middelware/VerifyToken";
+
+const router = express.Router();
 
 // REGISTER
 router.post("/message", async (req: any, res: any) => {
@@ -22,15 +22,13 @@ router.post("/message", async (req: any, res: any) => {
     }
 });
 
-router.get("/channel/:id", async (req, res) => {
+router.get("/channel/:id", verifyMiddleware, async (req, res) => {
 
     const query: any = req.params.id;
-    console.log("#### Channel chats ####", query);
     try {
         const users = await Chat.aggregate([
             { $match: { channelId: new ObjectId(query) }}
         ])
-        console.log(users);
         res.status(200).json(users);
     } catch (err) {
         res.status(500).json(err);
