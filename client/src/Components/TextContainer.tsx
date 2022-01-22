@@ -16,9 +16,9 @@ export const TextContainer = () => {
                         <div>
                             <div className="activeContainer">
                                 <p>
-                                    {users.map(({name}: any) => (
-                                        <div key={name} className="activeItem">
-                                            {name}
+                                    {users.map((user: any) => (
+                                        <div key={user.email} className="activeItem">
+                                            {user.username}
                                         </div>
                                     ))}
                                 </p>

@@ -1,4 +1,5 @@
 import {User} from "./Models/User";
+import {Chat} from "./Models/Chat";
 
 const users: any[] = [];
 
@@ -25,12 +26,15 @@ export const removeUser = (id: string) => {
 }
 
 export const getUser = (id: string) => {
-    const user = User.findById(id);
-
-    return user;
+    return User.findById(id);
 };
-export const getUser2 = (id: string) => users.find((user) => user.id === id);
 
-export const getUsersInRoom = (room: string) => users.filter((user) => user.room === room);
+export const getUsersInRoom = async (room: string) => {
+    const users = await Chat
+        .find({channelId: room})
+        .distinct('userId')
+        .exec();
+    return users;
+} 
 
 module.exports = { addUser, removeUser, getUser, getUsersInRoom };
