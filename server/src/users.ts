@@ -3,7 +3,7 @@ import {Chat} from "./Models/Chat";
 
 const users: any[] = [];
 
-export const addUser = ({ id, name, room }: {id: string, name: string, room: string}) => {
+export const addUser = ({ name, room }: {name: string, room: string}) => {
     name = name.trim().toLowerCase();
     room = room.trim().toLowerCase();
 
@@ -12,7 +12,7 @@ export const addUser = ({ id, name, room }: {id: string, name: string, room: str
     if(!name || !room) return { error: 'Username and room are required.' };
     if(existingUser) return { error: 'Username is taken.' };
 
-    const user = { id, name, room };
+    const user = { name, room };
 
     users.push(user);
 
@@ -35,6 +35,6 @@ export const getUsersInRoom = async (room: string) => {
         .distinct('userId')
         .exec();
     return users;
-} 
+}
 
 module.exports = { addUser, removeUser, getUser, getUsersInRoom };

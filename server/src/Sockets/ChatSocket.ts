@@ -14,11 +14,11 @@ export class ChatSocket {
                 credentials: true
             }
         });
-        io.use(function(socket, next){
+        io.use((socket, next) => {
             if (socket.handshake.query && socket.handshake.query.token){
                 const token = socket.handshake.query.token as string;
-                
-                verify(token, process.env.SECRET_KEY, function(err, user) {
+
+                verify(token, process.env.SECRET_KEY, (err, user) => {
                     if (err) return next(new Error('Authentication error'));
                     (socket as any).user = user;
                     next();
@@ -28,7 +28,7 @@ export class ChatSocket {
                 next(new Error('Authentication error'));
             }
         })
-        
+
         io.on('connection', (socket) => {
             console.log('connected');
 
@@ -38,24 +38,21 @@ export class ChatSocket {
                 console.log('userId', userId)
                 const user = await getUser(userId);
                 console.log('user', user)
-                const { error } = addUser({ id: socket.id, name: user.email, room });
+                const { error } = addUser({ name: user.email, room });
 
                 if(error) return callback(error);
 
-                socket.join(user.room);
+                socket.join(room);
 
                 socket.emit('message', { user: 'admin', text: `${user.username}, welcome to room ${room}.`});
-                socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.username} has joined!` });
+                socket.broadcast.to(room).emit('message', { user: 'admin', text: `${user.username} has joined!` });
 
                 const usersInRoom = await getUsersInRoom(room);
-                
-                const channelUsersPromises = usersInRoom.map(async(x: any) => {                    
-                    const user = await getUser(x);
-                    return user;
-                })
-                
+
+                const channelUsersPromises = usersInRoom.map(async(x: any) => await getUser(x));
+
                 const channelUsers = await Promise.all(channelUsersPromises);
-                io.to(user.room).emit('roomData', { room: user.room, users: channelUsers });
+                io.to(room).emit('roomData', { room: user.room, users: channelUsers });
 
                 callback();
 
@@ -64,12 +61,12 @@ export class ChatSocket {
             socket.on('sendMessage', async(message, room, callback) => {
                 const userId = (socket as any)?.user?.id;
                 if (!userId) throw new Error('Invalid user');
-                
+
                 const user = await getUser(userId);
-                
+
                 const newChat = new Chat({
-                    channelId: new ObjectId('61e68a6a6642d355e0004a91'),
-                    userId: new ObjectId(user._id), // '61e68a6a6642d355e0004a99',
+                    channelId: new ObjectId(room),
+                    userId: new ObjectId(user._id),
                     message,
                     username: user.username
                 });
