@@ -37,9 +37,7 @@ export class ChatSocket {
         console.log('userId', userId)
         const user = await getUser(userId);
         console.log('user', user)
-        const {error} = addUser({name: user.email, room});
-
-        if (error) return callback(error);
+        addUser({name: user.email, room});
 
         socket.join(room);
 

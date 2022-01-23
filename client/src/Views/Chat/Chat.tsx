@@ -1,29 +1,24 @@
-﻿import React, {useState, useEffect} from "react";
-import queryString from 'query-string';
-import io from "socket.io-client";
+﻿import React from "react";
 import './Chat.css';
 import {Messages} from "../../Components/Messages";
-import {Input} from "../../Components/Input";
-import {TextContainer} from "../../Components/TextContainer";
-import {Channels} from "../../Components/Channels/Channels";
-import {Users} from "../../Components/Users/Users";
-import {SocketContext, SocketProvider} from "../../Providers/SocketProvider";
+import {SocketProvider} from "../../Providers/SocketProvider";
+import {RightSide} from "./RightSide/RightSide";
+import {LeftSide} from "./LeftSide/LeftSide";
+import {ChannelsProvider} from "../../Providers/ChannelsProvider";
 
-const ENDPOINT = 'http://localhost:5000';
-
-let socket: SocketIOClient.Socket;
-
-export const Chat = ({location}: { location: any }) => {
+export const Chat = () => {
 
   return (
     <SocketProvider>
       <div className="outerContainer">
+
+        <ChannelsProvider>
+          <LeftSide channels={[]} />
+        </ChannelsProvider>
         <div className="container">
-          <Channels/>
           <Messages/>
-          <Users/>
         </div>
-        <TextContainer/>
+        <RightSide/>
       </div>
     </SocketProvider>
   );

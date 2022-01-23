@@ -1,9 +1,9 @@
 ﻿import React, {useContext} from 'react';
 
-import './TextContainer.css';
-import {SocketContext} from "../Providers/SocketProvider";
+import './RightSide.css';
+import {SocketContext} from "../../../Providers/SocketProvider";
 
-export const TextContainer = () => {
+export const RightSide = () => {
   const {users} = useContext(SocketContext);
 
   return (<div className="textContainer">
