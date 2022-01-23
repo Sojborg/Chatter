@@ -1,7 +1,22 @@
-﻿export const Channels = () => {
-    
+﻿import {Link} from "react-router-dom";
+import {useContext} from "react";
+import {ChannelsContext} from "../../Providers/ChannelsProvider";
+import './Channels.css';
+import {NewChannel} from "./NewChannel";
+
+export const Channels = () => {
+  const channelsContext = useContext(ChannelsContext);
+  const {channels} = channelsContext;
+
     return (<div className={'channels'}>
-            
-        </div>        
+        <NewChannel />
+        <ul>
+          {channels && channels.map(channel => {
+            return (<li>
+              <Link to={`./Chat?room=${channel._id}`}># {channel.name}</Link>
+            </li>)
+          })}
+        </ul>
+      </div>
     )
 }

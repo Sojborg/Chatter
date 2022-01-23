@@ -34,13 +34,14 @@ export const SocketProvider: FC = (props) => {
   }
 
   useEffect(() => {
+    const {room} = queryString.parse(window.location.search);
     const getMessages = async () => {
-      const response = await fetch(`http://localhost:5000/channel/61e68a6a6642d355e0004a91`,
+      const response = await fetch(`http://localhost:5000/api/chat/channel/${room}`,
         {
           headers: new Headers({
             'token': `bearer ${accessToken}`
           })
-        }); //61e68a6a6642d355e0004a91
+        });
       const serverMessages = await response.json();
       const newMessages = serverMessages.map((x: any) => ({user: x.username, text: x.message}));
       setMessages(newMessages);
@@ -48,7 +49,7 @@ export const SocketProvider: FC = (props) => {
     if (accessToken) {
       getMessages();
     }
-  }, [accessToken]);
+  }, [accessToken, window.location.search]);
 
   useEffect(() => {
     const {name, room} = queryString.parse(window.location.search);

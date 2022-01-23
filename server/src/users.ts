@@ -9,8 +9,8 @@ export const addUser = ({name, room}: { name: string, room: string }) => {
 
   const existingUser = users.find((user: any) => user.room === room && user.name === name);
 
-  if (!name || !room) return {error: 'Username and room are required.'};
-  if (existingUser) return {error: 'Username is taken.'};
+  // if (!name || !room) return {error: 'Username and room are required.'};
+  // if (existingUser) return {error: 'Username is taken.'};
 
   const user = {name, room};
 
