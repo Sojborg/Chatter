@@ -12,6 +12,24 @@ Content-Type: application/json
   "password": "hemmeligt"
 }
 
+### login user
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+  "email": "preben@mail.com",
+  "password": "hemmeligt1"
+}
+
+### update user password
+PUT http://localhost:5000/user/61e693e6c026d8057db4d846
+Content-Type: application/json
+token: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTY5M2U2YzAyNmQ4MDU3ZGI0ZDg0NiIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDI1MTY3MjMsImV4cCI6MTY0Mjk0ODcyM30.tx-HJujq_RDg9SREBIPwUwDl8tsJxerpiLYkXD1TlaI
+
+{
+  "password": "hemmeligt1"
+}
+
 ### chat message
 POST http://localhost:5000/message
 Content-Type: application/json
