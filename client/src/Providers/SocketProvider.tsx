@@ -78,7 +78,7 @@ export const SocketProvider: FC = (props) => {
     socket.on("roomData", ({users}: { users: string[] }) => {
       setUsers(users);
     });
-  }, []);
+  }, [room]);
 
   return (<SocketContext.Provider value={{
     name,
