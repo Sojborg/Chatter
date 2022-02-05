@@ -12,7 +12,7 @@ export const Channels = () => {
         <NewChannel />
         <ul>
           {channels && channels.map(channel => {
-            return (<li>
+            return (<li key={channel._id}>
               <Link to={`./Chat?room=${channel._id}`}># {channel.name}</Link>
             </li>)
           })}

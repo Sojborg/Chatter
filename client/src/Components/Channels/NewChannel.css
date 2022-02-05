@@ -1,0 +1,12 @@
+﻿.new-channel {
+
+}
+
+.new-channel-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-channel-icon {
+  cursor: pointer;
+}

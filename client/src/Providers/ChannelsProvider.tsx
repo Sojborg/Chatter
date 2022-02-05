@@ -1,4 +1,4 @@
-﻿import {createContext, FC, useEffect, useState} from "react";
+﻿import {createContext, FC, useCallback, useEffect, useState} from "react";
 import {Channel} from "../Views/Chat/LeftSide/LeftSide";
 import {getRequest, postRequest} from "../api";
 
@@ -13,18 +13,21 @@ export const ChannelsProvider: FC = (props) => {
   const [channels, setChannels] = useState<Channel[] | undefined>(undefined);
   const accessToken = window.localStorage.getItem('access-token');
 
+  const getChannels = useCallback(async () => {
+    const response = await getRequest<Channel[]>('channel');
+    setChannels(response);
+  }, [])
+
   useEffect(() => {
-    const getChannels = async () => {
-      const response = await getRequest<Channel[]>('channel');
-      setChannels(response);
-    }
     if (accessToken) {
       getChannels();
     }
   }, [accessToken])
 
-  const createChannel = (channelName: string) => {
+  const createChannel = async (channelName: string) => {
     const response = postRequest('channel', {name: channelName});
+    await getChannels();
+    return response;
   }
 
   return <ChannelsContext.Provider value={{

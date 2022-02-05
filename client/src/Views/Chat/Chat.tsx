@@ -5,21 +5,23 @@ import {SocketProvider} from "../../Providers/SocketProvider";
 import {RightSide} from "./RightSide/RightSide";
 import {LeftSide} from "./LeftSide/LeftSide";
 import {ChannelsProvider} from "../../Providers/ChannelsProvider";
+import {ModalProvider} from "../../Providers/ModalProvider";
 
 export const Chat = () => {
 
   return (
-    <SocketProvider>
-      <div className="outerContainer">
-
-        <ChannelsProvider>
-          <LeftSide channels={[]} />
-        </ChannelsProvider>
-        <div className="container">
-          <Messages/>
-        </div>
-        <RightSide/>
-      </div>
-    </SocketProvider>
+    <ChannelsProvider>
+      <ModalProvider>
+        <SocketProvider>
+          <div className="outerContainer">
+            <LeftSide channels={[]}/>
+            <div className="container">
+              <Messages/>
+            </div>
+            <RightSide/>
+          </div>
+        </SocketProvider>
+      </ModalProvider>
+    </ChannelsProvider>
   );
 }

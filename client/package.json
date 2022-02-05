@@ -3,15 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.3.1",
+    "@mui/material": "^5.3.1",
     "query-string": "^6.8.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-emoji": "^0.5.0",
     "react-router-dom": "^5.0.1",
-    "socket.io-client": "^4.4.1",
-    "web-vitals": "^2.1.2",
     "react-scroll-to-bottom": "^4.2.0",
-    "usehooks-ts": "^2.2.1"
+    "socket.io-client": "^4.4.1",
+    "usehooks-ts": "^2.2.1",
+    "web-vitals": "^2.1.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",
