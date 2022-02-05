@@ -41,3 +41,17 @@ Content-Type: application/json
 ### Get channel chats
 GET http://localhost:5000/channel/61e68a6a6642d355e0004a91
 Content-Type: application/json
+
+### create new channel
+POST http://localhost:5000/channel
+Content-Type: application/json
+token: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTY5M2U2YzAyNmQ4MDU3ZGI0ZDg0NiIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDI1MTY3MjMsImV4cCI6MTY0Mjk0ODcyM30.tx-HJujq_RDg9SREBIPwUwDl8tsJxerpiLYkXD1TlaI
+
+{
+  "name": "coding"
+}
+
+### Get all channels
+GET http://localhost:5000/channels
+Content-Type: application/json
+token: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTY5M2U2YzAyNmQ4MDU3ZGI0ZDg0NiIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDI5NDg3NjUsImV4cCI6MTY0MzM4MDc2NX0.ilriWHQ_JScyig9zhgSL9G0njGkDyq1lIFG5hjEK0r4

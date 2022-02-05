@@ -15,13 +15,11 @@ export const RightSide = () => {
           ? (
             <div>
               <div className="activeContainer">
-                <p>
-                  {users.map((user: any) => (
-                    <div key={user.email} className="activeItem">
-                      {user.username}
-                    </div>
-                  ))}
-                </p>
+                {users.map((user: any) => (
+                  <div key={user.email} className="activeItem">
+                    {user.username}
+                  </div>
+                ))}
               </div>
             </div>
           )

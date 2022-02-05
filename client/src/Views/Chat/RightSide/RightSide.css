@@ -8,12 +8,13 @@
 
 .activeContainer {
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 
 .activeItem {
   display: flex;
   align-items: center;
+  margin-bottom: 8px;
 }
 
 .activeContainer img {
