@@ -1,0 +1,35 @@
+﻿.top-bar {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  background-color: #353535;
+}
+
+.channel-settings {
+  flex: 1;
+  border-right: 1px solid #282c34;
+  max-width: 200px;
+  padding: 0 24px;
+}
+
+.channel-name {
+  display: flex;
+  flex: 1;
+  border-right: 1px solid #282c34;
+  padding: 0 24px;
+  align-items: center;
+  color: white;
+}
+
+.channel-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+  border-right: 1px solid #282c34;
+  padding: 0 24px;
+  align-items: center;
+}
+
+.channel-actions-item {
+  margin: 0 4px;
+}
