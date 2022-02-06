@@ -21,6 +21,10 @@
   color: white;
 }
 
+.channel-name-tag {
+  margin-right: 8px;
+}
+
 .channel-actions {
   display: flex;
   justify-content: flex-end;
@@ -32,4 +36,8 @@
 
 .channel-actions-item {
   margin: 0 4px;
+}
+
+.search-bar {
+  margin: 0 8px;
 }
