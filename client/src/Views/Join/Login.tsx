@@ -1,9 +1,9 @@
 ﻿import React, {useState} from 'react';
 
-import './Join.css';
+import './Login.css';
 import {useHistory} from "react-router-dom";
 
-export const Join = () => {
+export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
@@ -27,17 +27,17 @@ export const Join = () => {
   return (
     <div className="joinOuterContainer">
       <div className="joinInnerContainer">
-        <h1 className="heading">Join</h1>
+        <h1 className="heading">Login</h1>
         <div>
           <input
-            placeholder="Name"
+            placeholder="Username"
             className="joinInput"
             type="text"
             onChange={(event) => setEmail(event.target.value)}/>
         </div>
         <div>
           <input
-            placeholder="Room"
+            placeholder="Password"
             className="joinInput mt-20"
             type="password"
             onChange={(event) => setPassword(event.target.value)}/>
@@ -46,7 +46,7 @@ export const Join = () => {
         <button
           className={'button mt-20'}
           onClick={login}
-          type="submit">Sign In
+          type="submit">Log In
         </button>
 
       </div>
