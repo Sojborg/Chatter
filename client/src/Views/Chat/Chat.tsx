@@ -6,6 +6,7 @@ import {RightSide} from "./RightSide/RightSide";
 import {LeftSide} from "./LeftSide/LeftSide";
 import {ChannelsProvider} from "../../Providers/ChannelsProvider";
 import {ModalProvider} from "../../Providers/ModalProvider";
+import {TopBar} from "./TopBar";
 
 export const Chat = () => {
 
@@ -13,6 +14,7 @@ export const Chat = () => {
     <ChannelsProvider>
       <ModalProvider>
         <SocketProvider>
+          <TopBar channelName={'Gaming'} />
           <div className="outerContainer">
             <LeftSide channels={[]}/>
             <div className="container">

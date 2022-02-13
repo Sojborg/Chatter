@@ -1,0 +1,53 @@
+﻿.top-bar {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  background-color: #353535;
+}
+
+.channel-settings {
+  flex: 1;
+  border-right: 1px solid #282c34;
+  max-width: 200px;
+  padding: 0 24px;
+}
+
+.channel-name {
+  display: flex;
+  flex: 1;
+  border-right: 1px solid #282c34;
+  padding: 0 24px;
+  align-items: center;
+  color: white;
+}
+
+.channel-name-tag {
+  margin-right: 8px;
+}
+
+.channel-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+  border-right: 1px solid #282c34;
+  padding: 0 24px;
+  align-items: center;
+}
+
+.channel-actions-item {
+  margin: 0 4px;
+}
+
+.search-bar {
+  margin: 0 8px;
+}
+
+.search-bar input {
+  min-width: 150px;
+  width:33.3%;
+  transition: width 250ms ease-in-out;
+}
+
+.search-bar input:focus {
+  width: 100%;
+}

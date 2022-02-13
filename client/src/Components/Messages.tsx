@@ -18,10 +18,10 @@ export const Messages = () => {
   }
 
   return (<div className="messages">
+
+    <Input message={message} setMessage={setMessage} sendMessage={onSendMessage}/>
     <div className={'messages__content'}>
       {messages.map((message: string, i: number) => <div key={i}><Message message={message} name={name}/></div>)}
     </div>
-
-    <Input message={message} setMessage={setMessage} sendMessage={onSendMessage}/>
   </div>)
 };
