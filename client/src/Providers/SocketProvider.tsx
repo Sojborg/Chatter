@@ -34,6 +34,12 @@ export const SocketProvider: FC = (props) => {
   }
 
   useEffect(() => {
+    socket = io(ENDPOINT, {
+      query: {token: accessToken}
+    });
+  }, [])
+
+  useEffect(() => {
     const {room} = queryString.parse(window.location.search);
     const getMessages = async () => {
       const response = await fetch(`http://localhost:5000/api/chat/channel/${room}`,
@@ -51,12 +57,18 @@ export const SocketProvider: FC = (props) => {
     }
   }, [accessToken, window.location.search]);
 
+  const addMessageListener = () => {
+    // Remove existing listener before adding a new
+    socket.off('message');
+    socket.on('message', (message: string) => {
+      console.log(socket.listeners('message'))
+      const newMessages = [...messages, message]
+      setMessages((messages) => [...messages, message]);
+    });
+  }
+
   useEffect(() => {
     const {name, room} = queryString.parse(window.location.search);
-
-    socket = io(ENDPOINT, {
-      query: {token: accessToken}
-    });
 
     room && setRoom(room as string);
     name && setName(name as string);
@@ -65,20 +77,13 @@ export const SocketProvider: FC = (props) => {
       if (error) {
         alert(error);
       }
+
+      addMessageListener();
+      socket.on("roomData", ({users}: { users: string[] }) => {
+        setUsers(users);
+      });
     });
   }, [ENDPOINT, window.location.search]);
-
-
-  useEffect(() => {
-    socket.on('message', (message: string) => {
-      const newMessages = [...messages, message]
-      setMessages((messages) => [...messages, message]);
-    });
-
-    socket.on("roomData", ({users}: { users: string[] }) => {
-      setUsers(users);
-    });
-  }, [room]);
 
   return (<SocketContext.Provider value={{
     name,
