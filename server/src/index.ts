@@ -10,6 +10,7 @@ import {chatRoutes} from "./Routes/Chat";
 import {ChatSocket} from "./Sockets/ChatSocket";
 import {usersRoutes} from "./Routes/Users";
 import {channelRoutes} from "./Routes/ChannelRoute";
+import path from "path";
 
 const jsonParser = json();
 
@@ -23,6 +24,10 @@ mongoose
 
 const app = express();
 app.use(jsonParser);
+app.use(express.static("../client/build"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "..", "..", "client", "build", "index.html"));
+});
 app.use(cors());
 app.use(router);
 app.use(authRoutes);
