@@ -24,9 +24,9 @@ mongoose
 
 const app = express();
 app.use(jsonParser);
-app.use(express.static("client/build"));
+app.use(express.static("dist/client"));
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "..", "client", "build", "index.html"));
+  res.sendFile(path.resolve(__dirname, "dist", "client", "index.html"));
 });
 app.use(cors());
 app.use(router);
