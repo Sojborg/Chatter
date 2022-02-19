@@ -36,7 +36,7 @@ app.use(usersRoutes);
 app.use('/api/channel', channelRoutes);
 
 
-const port = 1337;
+const port = 8080;
 const server = http.createServer(app);
 
 const chatSocket = new ChatSocket(server);
