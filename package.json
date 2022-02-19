@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc && cd client && npm install && npm run build && npm run copy-fe && cd ../dist",
-    "copy-fe": "copyfiles build/* ../dist/client",
+    "copy-fe": "cd client && copyfiles build/** ../dist/client",
     "prestart": "npm run build",
     "start": "node dist/index.js",
     "start-dev": "nodemon"
