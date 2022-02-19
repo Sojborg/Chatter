@@ -1,4 +1,4 @@
-﻿import {useContext, useState} from "react";
+import {useContext, useState} from "react";
 import {ChannelsContext} from "../../Providers/ChannelsProvider";
 import {AddCircleOutline} from '@mui/icons-material';
 import {IDialogOptions, ModalContext} from "../../Providers/ModalProvider";

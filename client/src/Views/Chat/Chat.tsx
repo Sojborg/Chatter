@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import './Chat.css';
 import {Messages} from "../../Components/Messages";
 import {SocketProvider} from "../../Providers/SocketProvider";

@@ -1,4 +1,4 @@
-﻿import React, {FC} from "react";
+import React, {FC} from "react";
 import {TextField, Typography} from "@mui/material";
 import {Inbox, Notifications, PushPin, People, Tag, Search} from '@mui/icons-material';
 import './TopBar.css';

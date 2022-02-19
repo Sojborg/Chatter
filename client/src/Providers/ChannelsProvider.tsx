@@ -1,4 +1,4 @@
-﻿import {createContext, FC, useCallback, useEffect, useState} from "react";
+import {createContext, FC, useCallback, useEffect, useState} from "react";
 import {Channel} from "../Views/Chat/LeftSide/LeftSide";
 import {getRequest, postRequest} from "../api";
 
@@ -22,7 +22,7 @@ export const ChannelsProvider: FC = (props) => {
     if (accessToken) {
       getChannels();
     }
-  }, [accessToken])
+  }, [accessToken, getChannels])
 
   const createChannel = async (channelName: string) => {
     const response = postRequest('channel', {name: channelName});

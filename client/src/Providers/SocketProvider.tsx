@@ -1,8 +1,6 @@
-﻿import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useCallback, useEffect, useState} from 'react';
 import queryString from "query-string";
 import io from "socket.io-client";
-import {useLocalStorage} from 'usehooks-ts';
-
 
 export interface ISocketContext {
   name: string;
@@ -37,7 +35,7 @@ export const SocketProvider: FC = (props) => {
     socket = io(ENDPOINT, {
       query: {token: accessToken}
     });
-  }, [])
+  }, [accessToken])
 
   useEffect(() => {
     const {room} = queryString.parse(window.location.search);
@@ -55,17 +53,16 @@ export const SocketProvider: FC = (props) => {
     if (accessToken) {
       getMessages();
     }
-  }, [accessToken, window.location.search]);
+  }, [accessToken]);
 
-  const addMessageListener = () => {
+  const addMessageListener = useCallback(() => {
     // Remove existing listener before adding a new
     socket.off('message');
     socket.on('message', (message: string) => {
       console.log(socket.listeners('message'))
-      const newMessages = [...messages, message]
       setMessages((messages) => [...messages, message]);
     });
-  }
+  }, [])
 
   useEffect(() => {
     const {name, room} = queryString.parse(window.location.search);
@@ -83,7 +80,7 @@ export const SocketProvider: FC = (props) => {
         setUsers(users);
       });
     });
-  }, [ENDPOINT, window.location.search]);
+  }, [addMessageListener]);
 
   return (<SocketContext.Provider value={{
     name,

@@ -1,4 +1,4 @@
-﻿import {FC} from "react";
+import {FC} from "react";
 import './LeftSide.css';
 import {Channels} from "../../../Components/Channels/Channels";
 

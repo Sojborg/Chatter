@@ -1,6 +1,5 @@
-﻿import {createContext, FC, ReactElement, useEffect, useState} from "react";
-import {Channel} from "../Views/Chat/LeftSide/LeftSide";
-import {DialogContent, DialogTitle, Dialog, DialogActions, Button} from "@mui/material";
+import {createContext, FC, ReactElement, useState} from "react";
+import {Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/material";
 
 interface IModalContext {
   showDialog(options: IDialogOptions): void;
