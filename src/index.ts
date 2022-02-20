@@ -14,31 +14,30 @@ import path from "path";
 
 const jsonParser = json();
 
-dotenv.config();
+// dotenv.config();
 
-mongoose
-  .connect(process.env.MONGO_URL)
-  .then(() => console.log('DB Connected'))
-  .catch((err) => console.error(err))
-
+// mongoose
+//   .connect(process.env.MONGO_URL)
+//   .then(() => console.log('DB Connected'))
+//   .catch((err) => console.error(err))
 
 const app = express();
 app.use(jsonParser);
-app.use(express.static("dist/client"));
+// app.use(express.static("dist/client"));
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "dist", "client", "index.html"));
+// });
+
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "dist", "client", "index.html"));
+  res.status(200).json({hello: 'world'})
 });
+
 app.use(cors());
-app.use(router);
-app.use(authRoutes);
-app.use('/api/chat', chatRoutes);
-app.use(usersRoutes);
-app.use('/api/channel', channelRoutes);
 
 
 const port = 8080;
 const server = http.createServer(app);
 
-const chatSocket = new ChatSocket(server);
+// const chatSocket = new ChatSocket(server);
 
 server.listen(port);
