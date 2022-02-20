@@ -35,7 +35,7 @@ app.get("*", (req, res) => {
 app.use(cors());
 
 
-const port = 8080;
+const port = process.env.PORT || 5000;
 const server = http.createServer(app);
 
 // const chatSocket = new ChatSocket(server);

@@ -4,8 +4,9 @@
   "description": "serverside for chatter",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npm run linting && tsc && cd client && npm install && npm run build && npm run copy-fe && cd ../dist",
-    "linting": "tslint -c tslint.json -p tsconfig.json --fix",
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "build-prod": "cd client && npm install && npm run build && npm run copy-fe && cd .. && npm install && npm run build",
     "copy-fe": "cd client && copyfiles build/** ../dist/client",
     "prestart": "npm run build",
     "start": "node dist/index.js",
