@@ -53,11 +53,12 @@ router.post("/login", async (req: any, res: any) => {
       console.error(e)
     }
 
-    const {password, ...info} = user._doc;
+    const {password, ...info} = user;
 
     res.status(200).json({...info, accessToken});
-  } catch (err) {
-    res.status(500).json(err);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json(e);
   }
 });
 
