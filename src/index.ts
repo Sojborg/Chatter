@@ -1,7 +1,6 @@
 import http from 'http';
 import express from "express" ;
 import cors from 'cors';
-import router from './router';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import {authRoutes} from "./Routes/Auth";
@@ -14,30 +13,31 @@ import path from "path";
 
 const jsonParser = json();
 
-// dotenv.config();
+dotenv.config();
 
-// mongoose
-//   .connect(process.env.MONGO_URL)
-//   .then(() => console.log('DB Connected'))
-//   .catch((err) => console.error(err))
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => console.log('DB Connected'))
+  .catch((err) => console.error(err))
+
 
 const app = express();
 app.use(jsonParser);
-// app.use(express.static("dist/client"));
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "dist", "client", "index.html"));
-// });
+const clientDirPath = __dirname + "/../client/build";
+app.use(express.static(clientDirPath));
+app.use(cors());
+app.use(authRoutes);
+app.use('/api/chat', chatRoutes);
+app.use(usersRoutes);
+app.use('/api/channel', channelRoutes);
 
 app.get("*", (req, res) => {
-  res.status(200).json({hello: 'world'})
+  res.sendFile(path.resolve(__dirname, "..", "client", "build", "index.html"));
 });
 
-app.use(cors());
-
-
-const port = process.env.PORT || 5000;
+const port = 1337;
 const server = http.createServer(app);
 
-// const chatSocket = new ChatSocket(server);
+const chatSocket = new ChatSocket(server);
 
 server.listen(port);
