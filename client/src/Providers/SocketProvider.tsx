@@ -53,7 +53,7 @@ export const SocketProvider: FC = (props) => {
     if (accessToken) {
       getMessages();
     }
-  }, [accessToken, window.location.search]);
+  }, [accessToken]);
 
   const addMessageListener = useCallback(() => {
     // Remove existing listener before adding a new
