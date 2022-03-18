@@ -10,7 +10,7 @@ export const Register = () => {
   const history = useHistory();
 
   const register = async () => {
-    const response = await fetch('http://localhost:8080/register', {
+    const response = await fetch('http://localhost:5000/register', {
       method: 'POST',
       headers: new Headers(
         {
