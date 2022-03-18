@@ -9,7 +9,7 @@ export const Login = () => {
   const history = useHistory();
 
   const login = async () => {
-    const response = await fetch('http://localhost:1337/login', {
+    const response = await fetch('http://localhost:8080/login', {
       method: 'POST',
       headers: new Headers(
         {

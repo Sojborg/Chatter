@@ -35,7 +35,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "..", "client", "build", "index.html"));
 });
 
-const port = 1337;
+const port = 8080;
 const server = http.createServer(app);
 
 const chatSocket = new ChatSocket(server);
