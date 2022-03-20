@@ -15,8 +15,8 @@ const jsonParser = json();
 
 dotenv.config();
 
-console.log('STARTING SERVER');
-console.log('MONGOURL: ', process.env.MONGO_URL);
+console.error('STARTING SERVER');
+console.error('MONGOURL: ', process.env.MONGO_URL);
 
 mongoose
   .connect(process.env.MONGO_URL)
