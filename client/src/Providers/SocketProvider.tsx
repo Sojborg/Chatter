@@ -13,7 +13,7 @@ export interface ISocketContext {
 
 export const SocketContext = React.createContext<ISocketContext>({} as ISocketContext);
 
-const ENDPOINT = 'http://localhost:5000';
+const ENDPOINT = '/';
 let socket: SocketIOClient.Socket;
 
 export const SocketProvider: FC = (props) => {
@@ -40,7 +40,7 @@ export const SocketProvider: FC = (props) => {
   useEffect(() => {
     const {room} = queryString.parse(window.location.search);
     const getMessages = async () => {
-      const response = await fetch(`http://localhost:5000/api/chat/channel/${room}`,
+      const response = await fetch(`/api/chat/channel/${room}`,
         {
           headers: new Headers({
             'token': `bearer ${accessToken}`
