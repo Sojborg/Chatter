@@ -1,6 +1,7 @@
 import React, {FC, useCallback, useEffect, useState} from 'react';
 import queryString from "query-string";
 import io from "socket.io-client";
+import {useLocation} from "react-router-dom";
 
 export interface ISocketContext {
   name: string;
@@ -22,6 +23,7 @@ export const SocketProvider: FC = (props) => {
   const [users, setUsers] = useState<string[]>([]);
   const [messages, setMessages] = useState<string[]>([]);
   const accessToken = window.localStorage.getItem('access-token');
+  const location = useLocation();
 
   const sendMessage = (message: string) => {
     console.log('#### SEND MESSAGE ####', message)
@@ -38,7 +40,7 @@ export const SocketProvider: FC = (props) => {
   }, [accessToken])
 
   useEffect(() => {
-    const {room} = queryString.parse(window.location.search);
+    const {room} = queryString.parse(location.search);
     const getMessages = async () => {
       const response = await fetch(`/api/chat/channel/${room}`,
         {
@@ -53,7 +55,7 @@ export const SocketProvider: FC = (props) => {
     if (accessToken) {
       getMessages();
     }
-  }, [accessToken]);
+  }, [accessToken, location.search]);
 
   const addMessageListener = useCallback(() => {
     // Remove existing listener before adding a new
@@ -65,7 +67,7 @@ export const SocketProvider: FC = (props) => {
   }, [])
 
   useEffect(() => {
-    const {name, room} = queryString.parse(window.location.search);
+    const {name, room} = queryString.parse(location.search);
 
     room && setRoom(room as string);
     name && setName(name as string);
@@ -80,7 +82,7 @@ export const SocketProvider: FC = (props) => {
         setUsers(users);
       });
     });
-  }, [addMessageListener]);
+  }, [addMessageListener, location.search]);
 
   return (<SocketContext.Provider value={{
     name,
