@@ -1,20 +1,22 @@
-import React, {FC} from "react";
+import React, {FC, useContext} from "react";
 import {TextField, Typography} from "@mui/material";
 import {Inbox, Notifications, PushPin, People, Tag, Search} from '@mui/icons-material';
 import './TopBar.css';
+import {ChannelsContext} from "../../Providers/ChannelsProvider";
 
 interface TopBarProps {
-  channelName: string;
 }
 
-export const TopBar: FC<TopBarProps> = ({channelName}) => {
+export const TopBar: FC<TopBarProps> = () => {
+  const channelsContext = useContext((ChannelsContext));
+
   return (<div className="top-bar">
     <div className="channel-settings">
 
     </div>
     <div className={'channel-name'}>
       <Typography className={'channel-name-tag'} variant={'h5'} sx={{color: 'rgb(220, 221, 222)'}}>#</Typography>
-      <Typography variant={'subtitle1'}>{channelName}</Typography>
+      <Typography variant={'subtitle1'}>{channelsContext.currentChannel?.name ?? ''}</Typography>
     </div>
     <div className="channel-actions">
       <Tag
