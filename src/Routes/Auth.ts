@@ -12,6 +12,7 @@ router.post("/register", async (req: any, res: any) => {
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,
+    loggedIn: new Date(),
     password: AES.encrypt(
       req.body.password,
       process.env.SECRET_KEY
@@ -57,6 +58,7 @@ router.post("/login", async (req: any, res: any) => {
 
     res.status(200).json({...info, accessToken});
   } catch (e) {
+    console.error('MONGOURL: ', process.env.MONGO_URL);
     console.error(e);
     res.status(500).json(e);
   }

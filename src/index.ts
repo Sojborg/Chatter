@@ -15,10 +15,13 @@ const jsonParser = json();
 
 dotenv.config();
 
+console.error('STARTING SERVER');
+console.error('MONGOURL: ', process.env.MONGO_URL);
+
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => console.log('DB Connected'))
-  .catch((err) => console.error(err))
+  .catch((err) => console.error('DB CONNECTION ERROR', err))
 
 
 const app = express();
